@@ -1,0 +1,19 @@
+{
+  "cwd": "/home/sergei/Vintuoso/vinlib-ui",
+  "type": [
+    "web"
+  ],
+  "name": "Vinlib UI",
+  "framework": "react",
+  "template": "split-view",
+  "cssPreProcessor": false,
+  "bundler": "vite",
+  "theming": {
+    "customColor": true,
+    "color": "#e5ab1e",
+    "darkTheme": true,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false
+}

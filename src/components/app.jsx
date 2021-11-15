@@ -24,6 +24,56 @@ import {
   BlockFooter
 } from 'framework7-react';
 
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  //useQuery,
+  useMutation,
+  gql
+} from "@apollo/client";
+
+
+import createUploadLink from 'apollo-upload-client/public/createUploadLink.js';
+
+function customFetch(url, opts = {}) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+
+    xhr.open(opts.method || 'get', url)
+
+    for (let k in opts.headers || {}) xhr.setRequestHeader(k, opts.headers[k])
+
+    xhr.onload = e =>
+      resolve({
+        ok: true,
+        text: () => Promise.resolve(e.target.responseText),
+        json: () => Promise.resolve(JSON.parse(e.target.responseText))
+      })
+
+    xhr.onerror = reject
+
+    if (xhr.upload)
+      xhr.upload.onprogress = event =>
+        console.log(`${event.loaded / event.total * 100}% uploaded`)
+
+    xhr.send(opts.body)
+  })
+}
+
+
+
+
+const apolloClient = new ApolloClient({
+  //uri: 'http://localhost:5000/api/graphql',
+  cache:  new InMemoryCache(),
+  link: createUploadLink({
+  //  uri: 'http://localhost:5000/api/graphql',
+  uri: 'https://dev.tsier.com/api/graphql',
+    fetch: typeof window === 'undefined' ? global.fetch : customFetch
+  }),
+});
+
 
 import routes from '../js/routes';
 import store from '../js/store';
@@ -38,8 +88,6 @@ const MyApp = () => {
     name: 'Vinlib UI', // App name
       theme: 'auto', // Automatic theme detection
 
-
-
       // App store
       store: store,
       // App routes
@@ -52,11 +100,12 @@ const MyApp = () => {
   }
   f7ready(() => {
 
-
     // Call F7 APIs here
   });
 
   return (
+    <ApolloProvider client={apolloClient}>
+
     <App { ...f7params } >
 
         {/* Left panel with cover effect when hidden */}
@@ -126,6 +175,8 @@ const MyApp = () => {
         </View>
       </LoginScreen>
     </App>
+    </ApolloProvider> 
+        
   )
 }
 export default MyApp;

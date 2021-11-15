@@ -23,6 +23,7 @@ import {
 import ImageCapture from '../components/ImageCapture';
 
 
+
 const HomePage = () => {
 
   const imageCapture = React.useRef();
@@ -42,7 +43,7 @@ const HomePage = () => {
     </Navbar>
     {/* Toolbar */}
     <Toolbar bottom>
-      <Link  onClick={() => imageCapture.current.openLastImage()}>Last photo</Link>
+      <Link  onClick={() => imageCapture.current.showLastImage()}>Last photo</Link>
       <Button fill raised  onClick={() => imageCapture.current.captureImage()}>Capture photo</Button>
       <Link loginScreenOpen="#login-screen">Login</Link>
     </Toolbar>

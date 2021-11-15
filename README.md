@@ -75,7 +75,7 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 $ git clone https://github.com/stsier/vinlib-ui
 
 # Access
-$ cd vinlib
+$ cd vinlib-ui
 
 # Install dependencies
 $ npm install
@@ -100,5 +100,13 @@ This project is under license from MIT. For more details, see the [LICENSE](LICE
 Made with :heart: by <a href="https://github.com/stsier" target="_blank">Sergei TSIER</a>
 
 &#xa0;
+
+
+## :link: References ##
+
+<a href="https://www.fabiofranchino.com/blog/call-child-method-from-parent-rect-component/">Components communication in React</a>
+<a href="https://www.freecodecamp.org/news/pass-data-between-components-in-react/">Pass data between components 1</a>
+<a href="https://www.codegrepper.com/code-examples/javascript/pass+a+state+to+another+component+in+react">Pass data between components 2</a>
+
 
 <a href="#top">Back to top</a>
